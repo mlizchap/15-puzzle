@@ -2,23 +2,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     class Board {
       constructor() {
         this.selectedBlock = null;
-        this.blockArray = this.createRandomBlockArray();
+        this.blockArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        this.touched = false;
+      
       }
 
-      createRandomBlockArray() {
-        let orderedArray = Array.from({length: 16}, (_, item) => item);        
-        const shuffledArray = () => {
-          for (let i = orderedArray.length - 1; i > 0; i--) {
-            let j = i - 1;
-            let randIndex = Math.floor(Math.random() * j);
-            let temp = orderedArray[i];
-            orderedArray[i] = orderedArray[randIndex];
-            orderedArray[randIndex] = temp;
-          } 
-          return orderedArray;       
-        }
-        return shuffledArray();
-      }
+
 
       _createBlock(val) {
         const blockDiv= document.createElement("div")
@@ -41,13 +30,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
       }
 
-      renderBoard() {
-        this._clearBoard();
+      renderBoard(restartGame = false) {
+        this._clearBoard()
 
+        if (restartGame) {
+          this.shuffleArray()
+        } 
+        // if (!this.touched) {
+        //   this.shuffleArray
+        // } else {
+        //   this._clearBoard();
+        // }
         this.blockArray.forEach(blockItem => {
           const block = this._createBlock(blockItem)
           document.getElementById("board").append(block);
         })
+        this.touched = true;
       }
 
       selectBlock(blockDiv) {
@@ -70,9 +68,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
         
         this.renderBoard();
       }
+
+      shuffleArray() {
+        for (let i = this.blockArray.length - 1; i > 0; i--) {
+          let j = i - 1;
+          let randIndex = Math.floor(Math.random() * j);
+          let temp = this.blockArray[i];
+          this.blockArray[i] = this.blockArray[randIndex];
+          this.blockArray[randIndex] = temp;
+        } 
+      }
+
+      resetBoard() {
+        console.log("RESET")
+        this.shuffleArray();
+      }
   }
+
+
 
   const game = new Board();
   game.renderBoard();
+
+  const resetButton = document.getElementById("resetButton");
+  resetButton.addEventListener("click", () => game.renderBoard(true));
 
 })
