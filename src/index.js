@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         const blockDiv= document.createElement("div")
         blockDiv.innerHTML = val;
         blockDiv.className = "block";
+        blockDiv.addEventListener("click", () => this.selectBlock(blockDiv));
         return blockDiv;
       }
 
@@ -15,8 +16,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.blockArray.forEach(blockItem => {
           const block = this.createBlock(blockItem)
           document.getElementById("board").append(block);
-      })
-    }
+        })
+      }
+
+      selectBlock(blockDiv) {
+        console.log(blockDiv)
+      }
   }
 
   const game = new Board();
