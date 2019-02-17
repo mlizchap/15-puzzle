@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.blockArray = [12, 14, 11, 7, 6, 3, 4, 9, 1, 2, 5, 8, 10, 13, 15, 0];
       }
 
-      createBlock(val) {
+      _createBlock(val) {
         const blockDiv= document.createElement("div")
         
         if (val === 0) {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return blockDiv;
       }
 
-      clearBoard() {
+      _clearBoard() {
         let element = document.getElementById("board");
         while (element.firstChild) {
           element.removeChild(element.firstChild);
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       renderBoard() {
-        this.clearBoard();
+        this._clearBoard();
 
         this.blockArray.forEach(blockItem => {
-          const block = this.createBlock(blockItem)
+          const block = this._createBlock(blockItem)
           document.getElementById("board").append(block);
         })
       }
@@ -59,6 +59,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   const game = new Board();
   game.renderBoard();
-
 
 })
