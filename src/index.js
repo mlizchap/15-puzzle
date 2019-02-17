@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     class Board {
       constructor() {
+        this.selectBlock = null;
         this.blockArray = [12, 14, 11, 7, 6, 3, 4, 9, 1, 2, 5, 8, 10, 13, 15, 0];
       }
 
@@ -20,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       selectBlock(blockDiv) {
-        console.log(blockDiv)
+        this.selectedBlock = blockDiv;
+        this.reOrderBlocks();
       }
   }
 
