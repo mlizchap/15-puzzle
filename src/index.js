@@ -2,16 +2,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
     class Board {
       constructor() {
         this.selectedBlock = null;
-        this.blockArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        this.blockArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
         this.touched = false;
-      
       }
 
-
-
-      _createBlock(val) {
+      _createBlock(val, index) {
+        console.log(val, index)
         const blockDiv= document.createElement("div")
         
+        if (val === index + 1) {
+          blockDiv.style.color = "blue"
+        } else {
+          blockDiv.style.color = "red"
+        }
+
         if (val === 0) {
           blockDiv.className = "emptyBlock";
         } else {
@@ -33,20 +37,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
       renderBoard(restartGame = false) {
         this._clearBoard()
 
-        if (restartGame) {
+        if (restartGame || !this.touched) {
           this.shuffleArray()
         } 
-        // if (!this.touched) {
-        //   this.shuffleArray
-        // } else {
-        //   this._clearBoard();
-        // }
-        this.blockArray.forEach(blockItem => {
-          const block = this._createBlock(blockItem)
+
+        this.blockArray.forEach((blockItem, index) => {
+          const block = this._createBlock(blockItem, index)
           document.getElementById("board").append(block);
         })
+
         this.touched = true;
       }
+
+      
 
       selectBlock(blockDiv) {
         this.selectedBlock = blockDiv;
