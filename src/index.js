@@ -2,7 +2,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     class Board {
       constructor() {
         this.selectedBlock = null;
-        this.blockArray = [12, 14, 11, 7, 6, 3, 4, 9, 1, 2, 5, 8, 10, 13, 15, 0];
+        this.blockArray = this.createRandomBlockArray();
+      }
+
+      createRandomBlockArray() {
+        let orderedArray = Array.from({length: 16}, (_, item) => item);        
+        const shuffledArray = () => {
+          for (let i = orderedArray.length - 1; i > 0; i--) {
+            let j = i - 1;
+            let randIndex = Math.floor(Math.random() * j);
+            let temp = orderedArray[i];
+            orderedArray[i] = orderedArray[randIndex];
+            orderedArray[randIndex] = temp;
+          } 
+          return orderedArray;       
+        }
+        return shuffledArray();
       }
 
       _createBlock(val) {
