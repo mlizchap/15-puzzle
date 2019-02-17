@@ -1,5 +1,20 @@
 /* src/index.css */
 h1 {
-    text-align: center;
-    color: red
-  }
+  text-align: center;
+  color: red
+}
+
+#board {
+  width: 280px;
+  display: flex;
+  font-size: 18pt;
+  background-color: blue;
+  flex-wrap: wrap;
+}
+
+.block {
+  width: 30px;
+  margin: 10px;
+  background-color: #e1ffce;
+  padding: 10px;
+}
