@@ -62,9 +62,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         const selectedIndex = this.blockArray.indexOf(this.selectedBlock)
         const emptyIndex = this.blockArray.indexOf(0);
 
-        //const onRightEdge = (selectedIndex % 4 === 0)
-        const itemIsToRightOfEmptySlot = selectedIndex + 1 === emptyIndex;
-        const itemIsToLeftOfEmptySlot = selectedIndex - 1 === emptyIndex;
+        const onRightEdge = ( (selectedIndex + 1) % 4 === 0);
+        //const onTopEdge = ( (selectedIndex + 1) % 4 === 0);
+        const itemIsToRightOfEmptySlot = selectedIndex - 1 === emptyIndex;
+        const itemIsToLeftOfEmptySlot = selectedIndex + 1 === emptyIndex && !onRightEdge;
         const itemIsAboveEmptySlot = selectedIndex + 4 === emptyIndex;
         const itemIsBelowEmptyItem = selectedIndex - 4 === emptyIndex;
         
