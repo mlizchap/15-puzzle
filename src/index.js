@@ -7,13 +7,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       _createBlock(val, index) {
-        console.log(val, index)
+        console.log(val/2)
         const blockDiv= document.createElement("div")
         
-        if (val === index + 1) {
-          blockDiv.style.color = "blue"
-        } else {
-          blockDiv.style.color = "red"
+
+
+        if (val === index + 1 && val !== 0 ) {
+          blockDiv.style.backgroundColor = "#feffdd"
+        } else if (val !== 0) {
+          blockDiv.style.backgroundColor = "white"
         }
 
         if (val === 0) {
@@ -59,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       reOrderBlocks() {
         const selectedIndex = this.blockArray.indexOf(this.selectedBlock)
         const emptyIndex = this.blockArray.indexOf(0);
-        
+
+        //const onRightEdge = (selectedIndex % 4 === 0)
         const itemIsToRightOfEmptySlot = selectedIndex + 1 === emptyIndex;
         const itemIsToLeftOfEmptySlot = selectedIndex - 1 === emptyIndex;
         const itemIsAboveEmptySlot = selectedIndex + 4 === emptyIndex;

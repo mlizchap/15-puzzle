@@ -1,25 +1,41 @@
 /* src/index.css */
+* {
+  font-family: 'Luckiest Guy', cursive;
+  /* font-family: 'Love Ya Like A Sister', cursive;
+  font-family: 'Bubblegum Sans', cursive;
+  font-family: 'Cabin Sketch', cursive; */
+
+  font-family: 'Chelsea Market', cursive;
+
+}
+
 h1 {
+  font-size: 32pt;
+  letter-spacing: .3rem;
   text-align: center;
-  color: red
+  color: #515559
 }
 
 #board {
   width: 280px;
   display: flex;
-  font-size: 18pt;
-  background-color: blue;
+  font-size: 22pt;
+  background-color: #7783b7;
   flex-wrap: wrap;
   margin-right: auto;
   margin-left: auto;
+  border-radius: 3px;
+  border: 10px solid #7783b7;
 }
 
 .block {
   width: 30px;
   margin: 10px;
-  background-color: #e1ffce;
+  background-color: white;
   padding: 10px;
   text-align: center;
+  border-radius: 3px;
+  /* border: 4px solid #dbbcca; */
 }
 
 .emptyBlock {
@@ -29,10 +45,13 @@ h1 {
   padding: 10px;
 }
 
-.correctPlace {
-  color: yellowgreen;
+button {
+  color: #7783b7;
+  /* border: none; */
+  background-color: #edd7e0;
+  font-size: 10pt;
+  padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.inCorrectPlace {
-  color: orange;
-}
