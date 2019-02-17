@@ -10,11 +10,21 @@ h1 {
   font-size: 18pt;
   background-color: blue;
   flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .block {
   width: 30px;
   margin: 10px;
   background-color: #e1ffce;
+  padding: 10px;
+  text-align: center;
+}
+
+.emptyBlock {
+  width: 30px;
+  margin: 10px;
+  /* background-color: #e1ffce; */
   padding: 10px;
 }

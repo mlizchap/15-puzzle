@@ -7,8 +7,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       createBlock(val) {
         const blockDiv= document.createElement("div")
-        blockDiv.innerHTML = val;
-        blockDiv.className = "block";
+        
+        if (val === 0) {
+          blockDiv.className = "emptyBlock";
+        } else {
+          blockDiv.innerHTML = val;
+          blockDiv.className = "block";
+        }
+        
         blockDiv.addEventListener("click", () => this.selectBlock(val));
         return blockDiv;
       }
@@ -21,9 +27,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       renderBoard() {
-        // if (this.selectedBlock) {
-          this.clearBoard();
-        //}
+        this.clearBoard();
+
         this.blockArray.forEach(blockItem => {
           const block = this.createBlock(blockItem)
           document.getElementById("board").append(block);
@@ -32,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       selectBlock(blockDiv) {
         this.selectedBlock = blockDiv;
-        console.log(blockDiv)
         this.reOrderBlocks();
       }
 
