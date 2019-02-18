@@ -9,7 +9,7 @@ Site: https://mlizchap.github.io/15-puzzle/
 
 ## Overview
 <div style="text-align: center">
-<img src="static/readme1.jpg" width=350px>
+<img src="static/readme1.jpg" width=500>
 </div>
 
 The objective of this game is to re-order the blocks in sequential order starting with 1 and ending with a blank square.  The user can slide a number over the blank square, creating an empty space where the number previously was positioned. The number must be directly to the right, left, top, or bottom of the square.
@@ -25,5 +25,5 @@ Items directly above and below the null value, however, are a little more compli
 If the selected items is next to the null value, the item selected and the `null` items are swapped. Every time the items are swapped the new array is re-rendered to the DOM.
 
 <div style="text-align: center">
-<img src="static/readme2.jpg" width=350px>
+<img src="static/readme_logic.jpg" width=500px>
 </div>
