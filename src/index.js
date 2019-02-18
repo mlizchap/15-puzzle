@@ -1,103 +1,96 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    class Board {
-      constructor() {
-        this.selectedBlock = null;
-        this.blockArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-        this.touched = false;
-      }
+document.addEventListener("DOMContentLoaded", loadGame)
 
-      _createBlock(val, index) {
-        console.log(val/2)
-        const blockDiv= document.createElement("div")
-        
+function loadGame() {
+  const game = new Board(3,5);
+  game.createBoard();
+  game.shuffleBoard();
 
+  const shuffleButton = document.getElementById("shuffleButton");
+  shuffleButton.addEventListener("click", () => game.shuffleBoard());
+}
 
-        if (val === index + 1 && val !== 0 ) {
-          blockDiv.style.backgroundColor = "#feffdd"
-        } else if (val !== 0) {
-          blockDiv.style.backgroundColor = "white"
-        }
-
-        if (val === 0) {
-          blockDiv.className = "emptyBlock";
-        } else {
-          blockDiv.innerHTML = val;
-          blockDiv.className = "block";
-        }
-        
-        blockDiv.addEventListener("click", () => this.selectBlock(val));
-        return blockDiv;
-      }
-
-      _clearBoard() {
-        let element = document.getElementById("board");
-        while (element.firstChild) {
-          element.removeChild(element.firstChild);
-        }
-      }
-
-      renderBoard(restartGame = false) {
-        this._clearBoard()
-
-        if (restartGame || !this.touched) {
-          this.shuffleArray()
-        } 
-
-        this.blockArray.forEach((blockItem, index) => {
-          const block = this._createBlock(blockItem, index)
-          document.getElementById("board").append(block);
-        })
-
-        this.touched = true;
-      }
-
-      
-
-      selectBlock(blockDiv) {
-        this.selectedBlock = blockDiv;
-        this.reOrderBlocks();
-      }
-
-      reOrderBlocks() {
-        const selectedIndex = this.blockArray.indexOf(this.selectedBlock)
-        const emptyIndex = this.blockArray.indexOf(0);
-
-        const onRightEdge = ( (selectedIndex + 1) % 4 === 0);
-        //const onTopEdge = ( (selectedIndex + 1) % 4 === 0);
-        const itemIsToRightOfEmptySlot = selectedIndex - 1 === emptyIndex;
-        const itemIsToLeftOfEmptySlot = selectedIndex + 1 === emptyIndex && !onRightEdge;
-        const itemIsAboveEmptySlot = selectedIndex + 4 === emptyIndex;
-        const itemIsBelowEmptyItem = selectedIndex - 4 === emptyIndex;
-        
-        if (itemIsToRightOfEmptySlot || itemIsToLeftOfEmptySlot || itemIsAboveEmptySlot || itemIsBelowEmptyItem) {
-          [this.blockArray[selectedIndex], this.blockArray[emptyIndex]] = [this.blockArray[emptyIndex], this.blockArray[selectedIndex]]
-        }
-        
-        this.renderBoard();
-      }
-
-      shuffleArray() {
-        for (let i = this.blockArray.length - 1; i > 0; i--) {
-          let j = i - 1;
-          let randIndex = Math.floor(Math.random() * j);
-          let temp = this.blockArray[i];
-          this.blockArray[i] = this.blockArray[randIndex];
-          this.blockArray[randIndex] = temp;
-        } 
-      }
-
-      resetBoard() {
-        console.log("RESET")
-        this.shuffleArray();
-      }
+class Board {
+  constructor(width, height) {
+    this.blockArray = Array(width * height).fill().map((elem, i) => i === 0 ? null : i);
+    this.width = width;
+    this.height = height;
   }
 
+  createBoard() {
+    for (let i = 0; i < this.height; i++) {
+      const blockRow = document.createElement("div");
 
+      for (let i = 0; i < this.width; i++) {
+        const block = this.createBlock()
+        blockRow.append(block);
+      }
 
-  const game = new Board();
-  game.renderBoard();
+      document.getElementById("board").append(blockRow);
+    }
+  }
 
-  const resetButton = document.getElementById("resetButton");
-  resetButton.addEventListener("click", () => game.renderBoard(true));
+  // shuffle w/o replacement using Fisher-Yates algorithm, found on stackoverflow.com
+  shuffleBoard() {
+    const arr = this.blockArray;
+    for (let i = arr.length - 1; i > 0; i--) {
+      const iRandom = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[iRandom]] = [arr[iRandom], arr[i]];
+    }
 
-})
+    this.render();
+  }
+
+  createBlock(clickHandler) {
+    const block = document.createElement("div")
+
+    block.addEventListener("click", () => this.moveBlock(block));
+    block.className = 'block'
+    return block;
+  }
+
+  moveBlock(block) {
+    if (block.value === null) {
+      return
+    }
+
+    const arr = this.blockArray
+    const iSelected = arr.indexOf(block.value)
+    const iEmptyBlock = arr.indexOf(null);
+
+    const movableBlocks = new Set([
+     iEmptyBlock + 1,
+     iEmptyBlock - 1,
+     iEmptyBlock + this.width,
+     iEmptyBlock - this.width,
+    ])
+
+    if (movableBlocks.has(iSelected)) {
+      [arr[iSelected], arr[iEmptyBlock]] = [arr[iEmptyBlock], arr[iSelected]];
+      this.render();
+    }
+  }
+
+  renderBlock(block, blockValue, position) {
+    block.innerHTML = blockValue === null ? '&nbsp;' : blockValue
+    block.value = blockValue;
+
+    if (blockValue === null) {
+      block.className = 'block empty-block'
+    } else if (blockValue === position + 1) {
+      block.className = 'block correct-block'
+    } else {
+      block.className = 'block incorrect-block'
+    }
+  }
+
+  render() {
+    const board = document.getElementById("board");
+    Array(...board.children).forEach((boardRow, i) => {
+      Array(...boardRow.children).forEach((block, j) => {
+        const position = i * this.width + j;
+        const blockValue = this.blockArray[position];
+        this.renderBlock(block, blockValue, position);
+      });
+    });
+  }
+}

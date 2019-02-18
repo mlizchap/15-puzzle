@@ -6,17 +6,11 @@
   font-family: 'Cabin Sketch', cursive; */
 
   font-family: 'Chelsea Market', cursive;
-  color: #515559;
+  color: #595351;
   text-align: center;
+  /* background-color: #fdf5f8; */
 }
-#container {
-  margin-top: 40px;
-  border-radius: 10px;
-  background-color: #eff9ff;
-  display: inline-block;
-  padding: 40px;
-  border: 5px solid #bbd7e8;
-}
+
 h1 {
   /* padding-top: 0; */
   margin-top: 40px; 
@@ -27,39 +21,20 @@ h1 {
 }
 
 #board {
-  width: 280px;
-  display: flex;
+  /* width: 600px; */
+  /* display: flex; */
   font-size: 22pt;
   background-color: #B2E1D7;
-  flex-wrap: wrap;
-  margin-right: auto;
-  margin-left: auto;
+  /* flex-wrap: wrap; */
+  /* margin-right: auto;
+  margin-left: auto; */
   border-radius: 3px;
   border: 5px solid #B2E1D7;
 }
 
-.block {
-  width: 30px;
-  margin: 10px;
-  background-color: white;
-  padding: 10px;
-  text-align: center;
-  border-radius: 3px;
-  /* border: 4px solid #dbbcca; */
-}
-
-.emptyBlock {
-  width: 30px;
-  margin: 10px;
-  /* background-color: #e1ffce; */
-  padding: 10px;
-  background-color: #B2E1D7;
-
-}
-
 button {
-  color: #edaaca;
-  color: #515559;
+  /* color: #edaaca;
+  color: #515559; */
   border-radius: 3px;
   border: none;
   background-color: #749fb9;
@@ -69,3 +44,25 @@ button {
   margin-top: 20px;
 }
 
+.block {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  background-color: white;
+
+  /* border: 4px solid #dbbcca; */
+}
+
+.correct-block {
+  background-color: green;
+}
+.incorrect-block {
+  background-color: red;
+}
+.empty-block {
+  background-color: transparent;
+}
