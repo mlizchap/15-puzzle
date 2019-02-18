@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", loadGame)
 function loadGame() {
   const game = new Board(4,4);
   game.createBoard();
-  game.shuffleBoard();
 
   const shuffleButton = document.getElementById("shuffleButton");
   shuffleButton.addEventListener("click", () => game.shuffleBoard());
@@ -25,6 +24,7 @@ class Board {
       }
       document.getElementById("board").append(blockRow);
     }
+    this.shuffleBoard();
   }
 
   // shuffle w/o replacement using Fisher-Yates algorithm

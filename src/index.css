@@ -2,7 +2,7 @@
   --board-color: #B2E1D7;
   --font-color: #515559;
   --block-size: 30px;
-  --space-between-blocks: 8px;
+  --space-between-blocks: 4px;
 }
 body {
   font-family: 'Chelsea Market', Arial;
