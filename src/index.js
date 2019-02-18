@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", loadGame)
 
 function loadGame() {
-  const game = new Board(5,4);
+  const game = new Board(4,4);
   game.createBoard();
 
   const shuffleButton = document.getElementById("shuffleButton");
