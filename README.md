@@ -8,7 +8,9 @@ Site: https://mlizchap.github.io/15-puzzle/
 - run the app with `npm run start` and go to port 8080
 
 ## Overview
-<img src="static/readme1.jpg" width=100% style="display:block; margin-left: auto; margin-right: auto;">
+<div style="text-align: center">
+<img src="static/readme1.jpg" width=350px>
+</div>
 
 The objective of this game is to re-order the blocks in sequential order starting with 1 and ending with a blank square.  The user can slide a number over the blank square, creating an empty space where the number previously was positioned. The number must be directly to the right, left, top, or bottom of the square.
 
@@ -22,4 +24,6 @@ Items directly above and below the null value, however, are a little more compli
 
 If the selected items is next to the null value, the item selected and the `null` items are swapped. Every time the items are swapped the new array is re-rendered to the DOM.
 
-<img src="static/readme2.jpg" width=100% style="display:block; margin-left: auto; margin-right: auto;">
+<div style="text-align: center">
+<img src="static/readme2.jpg" width=350px>
+</div>
