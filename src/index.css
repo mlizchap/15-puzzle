@@ -49,9 +49,16 @@ h1 {
 .correct-block {
   background-color: #fff6db;
 }
+.correct-block:hover {
+  cursor: pointer;
+}
 .incorrect-block {
   background-color: white;
 }
+.incorrect-block {
+  cursor: pointer;
+}
 .empty-block {
   background-color: transparent;
+  cursor: auto;
 }
