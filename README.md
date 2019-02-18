@@ -25,5 +25,5 @@ Items directly above and below the null value, however, are a little more compli
 <img src="static/readme_logic.jpg" width=500px>
 </div>
 
-If the selected items is next to the null value, the item selected and the `null` items are swapped. Every time the items are swapped the new array is re-rendered to the DOM.
+If the selected items is next to the null value, the item selected and the `null` items are swapped. Every time the item are swapped the new array is re-rendered to the DOM.
 
