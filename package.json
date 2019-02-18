@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://mlizchap.github.io/15-puzzle/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --mode development --open",
-    "start": "webpack -p && node server.js"
+    "start": "webpack -p && node server.js",
+    "deploy": "gh-pages -d build",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
