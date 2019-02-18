@@ -3,9 +3,10 @@
   --font-color: #515559;
   --block-size: 30px;
   --space-between-blocks: 4px;
+  --main-font: 'Chelsea Market', Arial;
 }
 body {
-  font-family: 'Chelsea Market', Arial;
+  font-family: var(--main-font);
   color: var(--font-color);
   text-align: center;
 }
