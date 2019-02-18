@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", loadGame)
 
 function loadGame() {
-  const game = new Board(3,5);
+  const game = new Board(4,4);
   game.createBoard();
   game.shuffleBoard();
 
@@ -11,32 +11,29 @@ function loadGame() {
 
 class Board {
   constructor(width, height) {
-    this.blockArray = Array(width * height).fill().map((elem, i) => i === 0 ? null : i);
-    this.width = width;
-    this.height = height;
+    this.blockArray = Array(width * height).fill().map((elem, i) => i === 0 ? null : i); 
+    this.width = width; // number of blocks in row
+    this.height = height; // number of blocks in column
   }
 
   createBoard() {
     for (let i = 0; i < this.height; i++) {
-      const blockRow = document.createElement("div");
-
+      const blockRow = document.createElement("div"); 
       for (let i = 0; i < this.width; i++) {
-        const block = this.createBlock()
+        const block = this.createBlock(); // creates a block DOM element
         blockRow.append(block);
       }
-
       document.getElementById("board").append(blockRow);
     }
   }
 
-  // shuffle w/o replacement using Fisher-Yates algorithm, found on stackoverflow.com
+  // shuffle w/o replacement using Fisher-Yates algorithm
   shuffleBoard() {
     const arr = this.blockArray;
     for (let i = arr.length - 1; i > 0; i--) {
       const iRandom = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[iRandom]] = [arr[iRandom], arr[i]];
     }
-
     this.render();
   }
 
